@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Form</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1e73ff, #6fb1ff);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative Curves */
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+body::before {
+    width: 420px;
+    height: 420px;
+    top: -120px;
+    right: -120px;
+}
+
+body::after {
+    width: 520px;
+    height: 520px;
+    bottom: -180px;
+    left: -180px;
+}
+
+.container {
+    position: relative;
+    background: white;
+    width: 95%;
+    max-width: 430px;
+    padding: 28px;
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    z-index: 2;
+}
+
+h2 {
+    margin: 0 0 20px;
+    text-align: center;
+    color: #1e73ff;
+    font-weight: bold;
+}
+
+.row {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: #444;
+}
+
+input, textarea, select {
+    padding: 11px;
+    border-radius: 8px;
+    border: 1px solid #dcdcdc;
+    font-size: 14px;
+    transition: 0.25s;
+    background: #fafafa;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #1e73ff;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(30,115,255,0.12);
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Dropdown */
+select {
+    cursor: pointer;
+}
+
+/* Radio Buttons */
+.radio-group {
+    display: flex;
+    gap: 10px;
+}
+
+.radio-option {
+    flex: 1;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+    background: #fafafa;
+    font-size: 13px;
+}
+
+.radio-option input {
+    display: none;
+}
+
+.radio-option:hover {
+    border-color: #1e73ff;
+    background: #f2f7ff;
+}
+
+.radio-option input:checked + span {
+    color: #1e73ff;
+    font-weight: bold;
+}
+
+.radio-option input:checked + span::before {
+    content: "● ";
+}
+
+/* Button */
+button {
+    margin-top: 6px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #1e73ff, #0052cc);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Contact Form</h2>
+
+    <form action="send_mail.php" method="POST">
+
+        <div class="row">
+            <label>Full Name</label>
+            <input type="text" name="name" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="row">
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="row">
+            <label>Mobile Number</label>
+            <input type="tel" name="phone" pattern="[0-9]{10}" placeholder="Enter your mobile number" required>
+        </div>
+
+        <div class="row">
+            <label>Inquiry Type</label>
+            <select name="inquiry">
+                <option value="">Select an option</option>
+                <option>General Question</option>
+                <option>Support</option>
+                <option>Feedback</option>
+                <option>Business</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <label>Preferred Contact</label>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="contact_pref" value="Email">
+                    <span>Email</span>
+                </label>
+
+                <label class="radio-option">
+                    <input type="radio" name="contact_pref" value="Phone">
+                    <span>Phone</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <label>Subject</label>
+            <input type="text" name="subject" placeholder="Enter subject" required>
+        </div>
+
+        <div class="row">
+            <label>Message</label>
+            <textarea name="message" rows="5" placeholder="Enter your message" required></textarea>
+        </div>
+
+        <div class="row">
+            <button type="submit">Send Message</button>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>
